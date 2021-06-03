@@ -2,12 +2,14 @@
 require_once "config.php";
 require_once "session.php";
 
-if ($_SESSION["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+
     $fullname = trim($_POST['name']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
     $confirm_password = trim($_POST['confirm_password']);
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
+
 
     if ($query = $db->prepare("SELECT * FROM users WHERE email = ?")){
         $error = '';
@@ -15,6 +17,7 @@ if ($_SESSION["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $query->bind_param('s', $email);
         $query->execute();
         $query->store_result();
+
         if ($query->num_rows > 0){
             $error .= '<p class="error">Het email address is al geregristreerd!</p>';
         } else {
@@ -82,7 +85,7 @@ if ($_SESSION["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     <label>Submit</label>
                     <input type="submit" name="submit" class="btn btn-primary" value="Submit">
                 </div>
-                <p>already have an account? <a href="login.php">Login here</a></p>
+                <p>already have an account? <a href="login.php">Login hier</a></p>
             </form>
         </div>
     </div>
