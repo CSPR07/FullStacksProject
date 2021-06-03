@@ -6,8 +6,8 @@ require_once "session.php";
 $error = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
 
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
     if (empty($email)){
         $error .= '<p class="error">Email alsjeblieft invullen</p>';
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
                     <input type="email" name="email" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label>Wachtwoord</label>
+                    <label>Password</label>
                     <input type="password" name="password" class="form-control" required>
                 </div>
                 <div class="form-group">
