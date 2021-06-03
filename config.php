@@ -6,7 +6,7 @@ define('DBNAME', 'fullstackproject');
 
 $db = mysqli_connect(DBSERVER, DBUSERNAME, DBPASSWORD, DBNAME);
 
-if ($db== false){
+if ($db===false){
     die("ERROR: connection error. " .mysqli_connect_error());
 }
 ?>

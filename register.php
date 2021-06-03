@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
 
-    if ($query = $db->prepare("SELECT * FROM users WHERE email = ?")){
+    if ($query = $db-> prepare("SELECT * FROM users WHERE email = ?")){
         $error = '';
 
         $query->bind_param('s', $email);
