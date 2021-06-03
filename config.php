@@ -1,5 +1,5 @@
 <?php
-define('DBSERVER', 'localhost');
+define('DBSERVER', 'localhost:3306');
 define('DBUSERNAME', 'root');
 define('DBPASSWORD', '');
 define('DBNAME', 'fullstackproject');
