@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             }
             if (empty($error) ){
                 $insertQuery = $db->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?);");
-                $insertQuery->bind_param("sss", $fullname, $email, $password_hash);
+                $insertQuery->bind_param("sss", $fullname, $email, $password);
                 $result = $insertQuery->execute();
                 if ($result) {
                     $error .= '<p class="succes">je bent nu geregistreerd!</p>';
