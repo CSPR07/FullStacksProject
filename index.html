@@ -14,15 +14,80 @@
 <p>Your list</p><br>
 <a href="register.php">Register</a><br>
 <!-- anime lijst -->
-<div id="a1">
+<div id="pics">
+    <div class="hondPicture" id="picture-holder0">
+        <div class="favoriet" id="favoriet_1" style="background-image: url("img/checkmark1.jpg");"></div>
+<p>Naruto</p>
+    <img src="img/anime1.jpg" alt="">
+    </div>
 
-</div><br>
-<div id="a2">
-
-</div><br>
-<div id="a3">
-
+<div class="hondPicture" id="picture-holder1">
+    <div class="favoriet" id="favoriet_2" style="background-image: none;"></div>
+<p>One piece</p>
+<img src="img/anime2.jpg" alt="">
 </div>
+
+<div class="hondPicture" id="picture-holder2">
+    <div class="favoriet" id="favoriet_3" style="background-image: none;"></div>
+<p>Blue exorcist</p>
+<img src="img/anime3.jpg" alt="">
+</div>
+
+<div class="hondPicture" id="picture-holder3">
+    <div class="favoriet" id="favoriet_4" style="background-image: none;"></div>
+<img src="img/" alt="">
+</div>
+
+<div class="hondPicture" id="picture-holder4">
+    <div class="favoriet" id="favoriet_5" style="background-image: none;"></div>
+<img src="img/" alt="">
+</div>
+
+<script>
+    pics = document.getElementById("pics");
+    createPicsHolder();
+    createHondImages();
+
+    function createPicsHolder(){
+        for (var i = 0; i < 9; i++){
+            pictureHolder = document.createElement("div");
+            pictureHolder.className = "hondpicture";
+            pictureHolder.id = "picture-holder" + i;
+            pics.appendChild(pictureHolder);
+        }
+    }
+
+    function createHondImages(){
+        console.log(2);
+        pictureHolder = document.getElementsByClassName("hondPicture");
+        console.log(pictureHolder);
+        for (var i = 0; i < pictureHolder.lenght; i++){
+            favoriet = document.createElement("div");
+            favoriet.className = "favoriet";
+            favoriet.id = "favoriet_" + (i + 1);
+            hondPlaatje = document.createElement("img");
+            hondPlaatje.src = "img/" + (i+1) +".jpg";
+            console.log(1);
+            hondPlaatje.id = (i + 1);
+            hondPlaatje.addEventListener("click", function () {
+                maakFavoriet(this.id);
+            });
+            pictureHolder[i].appendChild(favoriet);
+            pictureHolder[i].appendChild(hondPlaatje);
+        }
+    }
+
+    function maakFavoriet ( id ){
+        notsofavoriet = document.getElementsByClassName("favoriet");
+
+        for (var i = 0; i < notsofavoriet.length;i++){
+            notsofavoriet[i].style.backgroundImage = "none";
+        }
+        favoriet = document.getElementById("favoriet_" + id);
+        favoriet.style.backgroundImage = "url('img/heart2.jpg')";
+    }
+
+</script>
 
 </body>
 </html>

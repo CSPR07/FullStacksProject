@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             }
             if (empty($error) ){
                 $insertQuery = $db->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?);");
-                $insertQuery->bind_param("sss", $fullname, $email, $password);
+                $insertQuery->bind_param("sss", $fullname, $email, $password_hash);
                 $result = $insertQuery->execute();
                 if ($result) {
                     $error .= '<p class="succes">je bent nu geregistreerd!</p>';
@@ -84,6 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 <div class="form-group">
                     <label>Submit</label>
                     <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                    <input type="reset" class="btn btn-secondary ml-2" value="Reset">
                 </div>
                 <p>already have an account? <a href="login.php">Login hier</a></p>
             </form>
