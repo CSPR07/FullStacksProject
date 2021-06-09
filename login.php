@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
                     $_SESSION["userid"] = $row['id'];
                     $_SESSION["user"] = $row;
 
-                    header("location: welcome.php");
+                    header("location: index.html");
                     exit;
                 } else {
                     $error .='<p class="error">Het wachtwoord is verkeerd</p>';
