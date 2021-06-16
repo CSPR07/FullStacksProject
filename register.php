@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
     $confirm_password = trim($_POST['confirm_password']);
-    $password_hash = password_hash($password, PASSWORD_BCRYPT);
+    $password_hash = ($password);
 
 
     if ($query = $db-> prepare("SELECT * FROM users WHERE email = ?")){
@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 $insertQuery = $db->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?);");
                 $insertQuery->bind_param("sss", $fullname, $email, $password_hash);
                 $result = $insertQuery->execute();
+                $insertQuery->close();
                 if ($result) {
                     $error .= '<p class="succes">je bent nu geregistreerd!</p>';
                 } else {
@@ -45,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         }
     }
     $query->close();
-    $insertQuery->close();
     mysqli_close($db);
 }
 ?>
@@ -75,11 +75,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" class="form-control" required>
+                    <input type="text" name="password" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>Confirm Password</label>
-                    <input type="password" name="confirm_password" class="form-control" required>
+                    <input type="text" name="confirm_password" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>Submit</label>

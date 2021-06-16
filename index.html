@@ -1,93 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>homePage</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 10px;
+            background: #f1f1f1;
+        }
+
+
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: white;
+        }
+
+        .header h1 {
+            font-size: 50px;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: lightskyblue;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .topnav a:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .leftcolumn {
+            float: left;
+            width: 75%;
+        }
+
+        .rightcolumn {
+            float: left;
+            width: 25%;
+            background-color: #f1f1f1;
+            padding-left: 20px;
+        }
+
+        .fakeimg {
+            background-color: #aaa;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+
+        @media screen and (max-width: 800px) {
+            .leftcolumn, .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .topnav a {
+                float: none;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<h1>Anime Watchlist</h1>
-<br><br>
-<p>Your list</p><br>
-<a href="register.php">Register</a><br>
-<!-- anime lijst -->
-<div id="pics">
-    <div class="hondPicture" id="picture-holder0">
-        <div class="favoriet" id="favoriet_1" style="background-image: url("img/checkmark1.jpg");"></div>
-<p>Naruto</p>
-    <img src="img/anime1.jpg" alt="">
+<div class="header">
+    <h1>Watchlist hulp</h1>
+    <p>Deze website is bedoelt om alle series die je gekeken hebt op een rijtje te krijgen</p>
+</div>
+
+<div class="topnav">
+    <a href="index.php">Homepage</a>
+    <a href="logout.php" style="float:right">Logout</a>
+    <a href="register.php" style="float:right">Register</a>
+    <a href="login.php" style="float:right">Login</a>
+</div>
+
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>Watchlist</h2>
+            <h5>[Serie name]</h5>
+            <div class="fakeimg" style="height:200px;">[Episode hier]</div>
+            <p>[Notes for yourself]</p>
+            <p>---------------------</p>
+        </div>
+        <div class="card">
+            <h2>Watchlist</h2>
+            <h5>[Serie name]</h5>
+            <div class="fakeimg" style="height:200px;">[Episode hier]</div>
+            <p>[Notes for yourself]</p>
+            <p>---------------------</p>
+        </div>
     </div>
-
-<div class="hondPicture" id="picture-holder1">
-    <div class="favoriet" id="favoriet_2" style="background-image: none;"></div>
-<p>One piece</p>
-<img src="img/anime2.jpg" alt="">
+    <div class="rightcolumn">
+        <div class="card">
+            <h2>Serie done</h2>
+            <div class="fakeimg" style="height:100px;">[Hier moet een diagram komen]</div>
+            <p>[hier moet een add button komen]</p>
+        </div>
+        <div class="card">
+            <h3>News</h3>
+            <div class="fakeimg"><p>[News page 1]</p></div>
+            <br>
+            <div class="fakeimg"><p>[News page 2]</p></div>
+            <br>
+            <div class="fakeimg"><p>[News page 3]</p></div>
+        </div>
+    </div>
 </div>
 
-<div class="hondPicture" id="picture-holder2">
-    <div class="favoriet" id="favoriet_3" style="background-image: none;"></div>
-<p>Blue exorcist</p>
-<img src="img/anime3.jpg" alt="">
-</div>
-
-<div class="hondPicture" id="picture-holder3">
-    <div class="favoriet" id="favoriet_4" style="background-image: none;"></div>
-<img src="img/" alt="">
-</div>
-
-<div class="hondPicture" id="picture-holder4">
-    <div class="favoriet" id="favoriet_5" style="background-image: none;"></div>
-<img src="img/" alt="">
-</div>
-
-<script>
-    pics = document.getElementById("pics");
-    createPicsHolder();
-    createHondImages();
-
-    function createPicsHolder(){
-        for (var i = 0; i < 9; i++){
-            pictureHolder = document.createElement("div");
-            pictureHolder.className = "hondpicture";
-            pictureHolder.id = "picture-holder" + i;
-            pics.appendChild(pictureHolder);
-        }
-    }
-
-    function createHondImages(){
-        console.log(2);
-        pictureHolder = document.getElementsByClassName("hondPicture");
-        console.log(pictureHolder);
-        for (var i = 0; i < pictureHolder.lenght; i++){
-            favoriet = document.createElement("div");
-            favoriet.className = "favoriet";
-            favoriet.id = "favoriet_" + (i + 1);
-            hondPlaatje = document.createElement("img");
-            hondPlaatje.src = "img/" + (i+1) +".jpg";
-            console.log(1);
-            hondPlaatje.id = (i + 1);
-            hondPlaatje.addEventListener("click", function () {
-                maakFavoriet(this.id);
-            });
-            pictureHolder[i].appendChild(favoriet);
-            pictureHolder[i].appendChild(hondPlaatje);
-        }
-    }
-
-    function maakFavoriet ( id ){
-        notsofavoriet = document.getElementsByClassName("favoriet");
-
-        for (var i = 0; i < notsofavoriet.length;i++){
-            notsofavoriet[i].style.backgroundImage = "none";
-        }
-        favoriet = document.getElementById("favoriet_" + id);
-        favoriet.style.backgroundImage = "url('img/heart2.jpg')";
-    }
-
-</script>
 
 </body>
 </html>
