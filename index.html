@@ -10,13 +10,14 @@
             font-family: Arial;
             padding: 10px;
             background: #f1f1f1;
+            background-image: url("img/rick-and-morty-house-background.png");
+            background-repeat: repeat;
         }
 
 
         .header {
             padding: 30px;
             text-align: center;
-            background: white;
         }
 
         .header h1 {
@@ -25,7 +26,7 @@
 
         .topnav {
             overflow: hidden;
-            background-color: lightskyblue;
+            background-color: chartreuse;
         }
 
         .topnav a {
@@ -50,7 +51,6 @@
         .rightcolumn {
             float: left;
             width: 25%;
-            background-color: #f1f1f1;
             padding-left: 20px;
         }
 
@@ -61,7 +61,6 @@
         }
 
         .card {
-            background-color: white;
             padding: 20px;
             margin-top: 20px;
         }
@@ -86,6 +85,11 @@
                 width: 100%;
             }
         }
+
+        .films{
+            background-color: antiquewhite;
+        }
+
     </style>
 </head>
 <body>
@@ -104,34 +108,52 @@
 
 <div class="row">
     <div class="leftcolumn">
+
+        <!--
         <div class="card">
-            <h2>Watchlist</h2>
-            <h5>[Serie name]</h5>
-            <div class="fakeimg" style="height:200px;">[Episode hier]</div>
-            <p>[Notes for yourself]</p>
-            <p>---------------------</p>
+            <h2> [Titel] </h2>
+            <h5> [Serie] </h5>
+            <div class="fakeimg" style="height:200px;">
+            [Artikel]
+            </div>
+            <p> [Datum] </p>
+        </div>
+        -->
+        <div class="card">
+            <h2>Seizoen 5 Nieuws!</h2>
+            <h5>Rick and morty (serie)</h5>
+            <div class="fakeimg" style="height:100px;">
+                Rick en Morty-fans zullen maar al te goed weten over onderbrekingen en hobbels in de weg als het gaat om het kijken naar hun favoriete show week na week. Het vierde seizoen werd in tweeen gesplitst en liet een diehard gemeenschap enkele maanden wachten op een nieuwe reeks afleveringen.
+            </div>
+            <p>21/06/2021</p>
         </div>
         <div class="card">
-            <h2>Watchlist</h2>
-            <h5>[Serie name]</h5>
-            <div class="fakeimg" style="height:200px;">[Episode hier]</div>
-            <p>[Notes for yourself]</p>
-            <p>---------------------</p>
+            <h2> Batman / Twilight </h2>
+            <h5> The Batman (film) </h5>
+            <div class="fakeimg" style="height:75px;">
+                In deze nieuwe Batman film zal Ben Affleck niet meer in de huid van de superheld kruipen. Dit keer is niemand minder dan Robert Pattinson (Twilight) voor de rol gecast! Over het plot is nog niks bekend gemaakt, maar waarschijnlijk zal het weer een origin story worden.
+            </div>
+            <p> 21/06/2021 </p>
         </div>
     </div>
     <div class="rightcolumn">
+        <div class="films">
         <div class="card">
-            <h2>Serie done</h2>
-            <div class="fakeimg" style="height:100px;">[Hier moet een diagram komen]</div>
-            <p>[hier moet een add button komen]</p>
+            <h2>Top 3 Nieuwe films</h2>
+            <div class="fakeimg">
+                <h2>Suicide Squad</h2>
+                <p>06/08/2021</p></div>
+            <br>
+            <div class="fakeimg">
+                <h2>The Batman</h2>
+                <p>01/09/2021</p>
+            </div>
+            <br>
+            <div class="fakeimg">
+                <h2>Uncharted</h2>
+                <p>08/09/2021</p>
+            </div>
         </div>
-        <div class="card">
-            <h3>News</h3>
-            <div class="fakeimg"><p>[News page 1]</p></div>
-            <br>
-            <div class="fakeimg"><p>[News page 2]</p></div>
-            <br>
-            <div class="fakeimg"><p>[News page 3]</p></div>
         </div>
     </div>
 </div>
