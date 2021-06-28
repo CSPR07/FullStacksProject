@@ -10,8 +10,9 @@
             font-family: Arial;
             padding: 10px;
             background: #f1f1f1;
-            background-image: url("img/rick-and-morty-house-background.png");
+            background-image: url("img/portal.png");
             background-repeat: repeat;
+            background-position-y: top;
         }
 
 
@@ -27,6 +28,9 @@
         .topnav {
             overflow: hidden;
             background-color: chartreuse;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
         }
 
         .topnav a {
@@ -55,9 +59,10 @@
         }
 
         .fakeimg {
-            background-color: #aaa;
             width: 100%;
             padding: 20px;
+            border-color: white;
+            border-width: 1px;
         }
 
         .card {
@@ -90,22 +95,40 @@
             background-color: antiquewhite;
         }
 
+        .wrap{
+            background-color: #f1f1f1;
+            position: center;
+            width: 1000px;
+            opacity: 96%;
+            margin-left: 200px;
+        }
+
+        .footer {
+            position: static;
+            width: 1000px;
+            background-color: black;
+            color: white;
+            text-align: left;
+            padding: 25px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+
     </style>
 </head>
 <body>
-
+<div class="wrap">
 <div class="header">
     <h1>Watchlist hulp</h1>
     <p>Deze website is bedoelt om alle series die je gekeken hebt op een rijtje te krijgen</p>
 </div>
 
-<div class="topnav">
+    <div class="topnav">
     <a href="index.php">Homepage</a>
     <a href="logout.php" style="float:right">Logout</a>
     <a href="register.php" style="float:right">Register</a>
     <a href="login.php" style="float:right">Login</a>
 </div>
-
 <div class="row">
     <div class="leftcolumn">
 
@@ -135,6 +158,14 @@
             </div>
             <p> 21/06/2021 </p>
         </div>
+        <div class="card">
+            <h2> Good girls, WEG!? </h2>
+            <h5> Good girls netflix </h5>
+            <div class="fakeimg" style="height:150px;">
+                Het is op Netflix bijna klaar voor Good Girls. De serie zal nog éeen keer terugkeren voor gloednieuwe afleveringen, maar dan is het gedaan met de reeks. NBC heeft ervoor gekozen om na vier seizoenen de stekker uit de serie te trekken. Dat blijkt uit een bericht op Variety. Eerder was er nog de hoop dat er in ieder geval een overeenkomst bereikt kon worden over nog een seizoen. Dat is niet gelukt vanwege financiële redenen. De serie zal ook niet elders ondergebracht worden.
+            </div>
+            <p> 28/06/2021 </p>
+        </div>
     </div>
     <div class="rightcolumn">
         <div class="films">
@@ -157,7 +188,12 @@
         </div>
     </div>
 </div>
-
+    <div class="footer">
+        <h4>Heb jij nog nieuws dat er niet staat, neem dan contact op met mij!</h4>
+        <h5>Contact:    <br>
+            ditiseenfakeemail@outluuk.com <br> 0612345678 <br> Fax: nee</h5>
+    </div>
+</div>
 
 </body>
 </html>
