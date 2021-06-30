@@ -25,6 +25,20 @@
             font-size: 50px;
         }
 
+        .topnav ul{
+            list-style-type: none;
+            display: flex;
+            padding: 0;
+        }
+
+        .topnav li{
+            width: 100px;
+        }
+
+        #item1, #item2, #item3{
+            text-align: right;
+        }
+
         .topnav {
             overflow: hidden;
             background-color: chartreuse;
@@ -34,10 +48,7 @@
         }
 
         .topnav a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
+            color: black;
             padding: 14px 16px;
             text-decoration: none;
         }
@@ -82,36 +93,66 @@
                 width: 100%;
                 padding: 0;
             }
-        }
+            #nav li{
+                border: none;
+                display: list-item;
+            }
 
-        @media screen and (max-width: 400px) {
+            #nav ul a{
+                border-top: 1px solid white;
+                list-style-type: disc;
+                display: block;
+                padding: 0;
+            }
+
             .topnav a {
                 float: none;
                 width: 100%;
+                text-align: left;
+                margin-top: 5px;
+            }
+
+            .topnav ul{
+                list-style-type: none;
+                padding-left: 0;
+            }
+
+            .topnav {
+                padding: 1px;
+                border-top: white 1px;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .wrap{
+                display: inline-block;
+                align-items: start;
             }
         }
 
         .films{
-            background-color: antiquewhite;
+            background-color: white;
         }
 
         .wrap{
             background-color: #f1f1f1;
             position: center;
-            width: 1000px;
+            width: 70%;
             opacity: 96%;
-            margin-left: 200px;
+            margin-left: 15%;
+            margin-right: 15%;
         }
 
         .footer {
+            border-top: 1px black solid;
             position: static;
-            width: 1000px;
-            background-color: black;
-            color: white;
+            width: 100%;
+            color: black;
             text-align: left;
             padding: 25px;
             padding-bottom: 5px;
             padding-top: 5px;
+            opacity: 50%;
         }
 
     </style>
@@ -124,10 +165,12 @@
 </div>
 
     <div class="topnav">
-    <a href="index.php">Homepage</a>
-    <a href="logout.php" style="float:right">Logout</a>
-    <a href="register.php" style="float:right">Register</a>
-    <a href="login.php" style="float:right">Login</a>
+        <ul id="nav">
+            <li><a href="index.html">Homepage</a></li>
+            <li id="item1"><a href="logout.php">Logout</a></li>
+            <li id="item2"><a href="register.php">Register</a></li>
+            <li id="item3"><a href="login.php">Login</a></li>
+        </ul>
 </div>
 <div class="row">
     <div class="leftcolumn">
@@ -190,8 +233,8 @@
 </div>
     <div class="footer">
         <h4>Heb jij nog nieuws dat er niet staat, neem dan contact op met mij!</h4>
-        <h5>Contact:    <br>
-            ditiseenfakeemail@outluuk.com <br> 0612345678 <br> Fax: nee</h5>
+        <h5>Contact informatie    <br>--------------------------------------------------------<br>
+            Email: ditiseenfakeemail@outluuk.com <br> Telefoon: 0612345678 <br> Fax: nee</h5>
     </div>
 </div>
 
