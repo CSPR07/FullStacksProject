@@ -155,11 +155,8 @@
     <div class="topnav responsive" id="myTopnav">
         <a href="index.php" class="active">Home</a>
         <a href="login.php">Login</a>
-        <a href="logout.php">Logout</a>
+        <!--<a href="logout.php">Logout</a>-->
         <a href="register.php">Register</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
     </div>
     <div class="row">
 
@@ -169,7 +166,7 @@
                     <h2>Top 3 Nieuwe films</h2>
                     <div class="fakeimg">
                         <?php
-                        $conn = mysqli_connect("localhost", "root", "R@ps@c2307", "fullstackproject");
+                        $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
                         $sql = "SELECT filmname, datumschema FROM films WHERE id = 1;";
                         $result = $conn-> query($sql);
 
@@ -187,7 +184,7 @@
                     </div>
                     <div class="fakeimg">
                         <?php
-                        $conn = mysqli_connect("localhost", "root", "R@ps@c2307", "fullstackproject");
+                        $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
                         $sql = "SELECT filmname, datumschema FROM films WHERE id = 2;";
                         $result = $conn-> query($sql);
 
@@ -205,7 +202,7 @@
                     </div>
                     <div class="fakeimg">
                         <?php
-                        $conn = mysqli_connect("localhost", "root", "R@ps@c2307", "fullstackproject");
+                        $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
                         $sql = "SELECT filmname, datumschema FROM films WHERE id = 3;";
                         $result = $conn-> query($sql);
 
@@ -229,7 +226,7 @@
 
             <div class="card">
                 <?php
-                $conn = mysqli_connect("localhost", "root", "R@ps@c2307", "fullstackproject");
+                $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
                 $sql = "SELECT title, serie, tekstvak, datum FROM articles WHERE id = 1;";
                 $result = $conn-> query($sql);
 
@@ -248,7 +245,7 @@
 
             <div class="card">
                 <?php
-                $conn = mysqli_connect("localhost", "root", "R@ps@c2307", "fullstackproject");
+                $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
                 $sql = "SELECT title, serie, tekstvak, datum FROM articles WHERE id = 2;";
                 $result = $conn-> query($sql);
 
@@ -267,7 +264,7 @@
 
             <div class="card">
                 <?php
-                $conn = mysqli_connect("localhost", "root", "R@ps@c2307", "fullstackproject");
+                $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
                 $sql = "SELECT title, serie, tekstvak, datum FROM articles WHERE id = 3;";
                 $result = $conn-> query($sql);
 
@@ -282,25 +279,13 @@
 
                 $conn -> close();
                 ?>
+            </div>
+        </div>
+        <div class="footer">
+            <h4>Heb jij nog nieuws dat er niet staat, neem dan contact op met mij!</h4>
+            <h5>Contact informatie    <br>--------------------------------------------------------<br>
+                Email: ditiseenfakeemail@outluuk.com <br> Telefoon: 0612345678 <br> Fax: nee</h5>
         </div>
     </div>
-    <div class="footer">
-        <h4>Heb jij nog nieuws dat er niet staat, neem dan contact op met mij!</h4>
-        <h5>Contact informatie    <br>--------------------------------------------------------<br>
-            Email: ditiseenfakeemail@outluuk.com <br> Telefoon: 0612345678 <br> Fax: nee</h5>
-    </div>
-</div>
-
-<script>
-    function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
-    }
-</script>
-
 </body>
 </html>
