@@ -1,8 +1,8 @@
 <?php
 define('DBSERVER', 'localhost');
-define('DBUSERNAME', 'root');
-define('DBPASSWORD', 'R@ps@c2307');
-define('DBNAME', 'fullstackproject');
+define('DBUSERNAME', 'id17176924_root');
+define('DBPASSWORD', 'cKWw]H8Nu4+piGwW');
+define('DBNAME', 'id17176924_fullstackproject');
 
 $db = mysqli_connect(DBSERVER, DBUSERNAME, DBPASSWORD, DBNAME);
 
