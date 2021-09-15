@@ -138,58 +138,28 @@ body {
                     $dbname = "id17176924_fullstackproject";
                     
                     $conn = mysqli_connect("$dbhost", "$dbroot", "$dbww", "$dbname");
-                        $sql1 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 1;";
-                        $result1 = $conn-> query($sql1);
-                        $sql2 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 2;";
-                        $result2 = $conn-> query($sql2);
-                        $sql3 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 3;";
-                        $result3 = $conn-> query($sql3);
+                        $sql = "SELECT filmname, filmtext, datumschema FROM films ORDER BY datumschema DESC;";
+                        $result = $conn-> query($sql);
                         
                         $conn -> close();
                     ?>
                     <h2>Top 3 Nieuwe films</h2>
-                    <div class="fakeimg">
                         <?php
-                        if ($result1 -> num_rows > 0){
-                            while($row = $result1-> fetch_assoc()){
+                        if ($result -> num_rows > 0){
+                            $counter = 0;
+                            while($row = $result-> fetch_assoc() and ($counter < 3)){
+                                echo "<div class='fakeimg'>";
                                 echo "<h2>".$row["filmname"] ."</h2>
                                 <p>".$row["filmtext"]."</p>
                                 <p>" .$row["datumschema"] ."</p>";
+                                echo "</div>";
+                                $counter++;
                             }
                         }
                         else{
                             echo "0 Result";
                         }
                         ?>
-                    </div>
-                    <div class="fakeimg">
-                        <?php
-                        if ($result1 -> num_rows > 0){
-                            while($row = $result2-> fetch_assoc()){
-                                echo "<h2>".$row["filmname"] ."</h2>
-                                <p>".$row["filmtext"]."</p>
-                                <p>" .$row["datumschema"] ."</p>";
-                            }
-                        }
-                        else{
-                            echo "0 Result";
-                        }
-                        ?>
-                    </div>
-                    <div class="fakeimg">
-                        <?php
-                        if ($result1 -> num_rows > 0){
-                            while($row = $result3-> fetch_assoc()){
-                                echo "<h2>".$row["filmname"] ."</h2>
-                                <p>".$row["filmtext"]."</p>
-                                <p>" .$row["datumschema"] ."</p>";
-                            }
-                        }
-                        else{
-                            echo "0 Result";
-                        }
-                        ?>
-                    </div>
                 </div>
             </div>
         </div>
@@ -202,46 +172,17 @@ body {
                     $dbname = "id17176924_fullstackproject";
                     
                     $conn = mysqli_connect("$dbhost", "$dbroot", "$dbww", "$dbname");
-                        $sql4 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 1;";
-                        $result4 = $conn-> query($sql4);
-                        $sql5 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 2;";
-                        $result5 = $conn-> query($sql5);
-                        $sql6 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 3;";
-                        $result6 = $conn-> query($sql6);
+                        $sql = "SELECT title, serie, tekstvak, datum FROM articles ORDER BY datum DESC;";
+                        $result = $conn-> query($sql);
                         
                         $conn -> close();
                     ?>
-            <div class="card">
                 <?php
-                        if ($result4 -> num_rows > 0){
-                            while($row = $result4-> fetch_assoc()){
+                        if ($result -> num_rows > 0){
+                            while($row = $result-> fetch_assoc()){
+                                echo "<div class='card'>";
                                 echo "<h2>".$row["title"] ."</h2><br><h5>" .$row["serie"] ."</h5><br><h5>" .$row["tekstvak"] ."</h5><br><p>" .$row["datum"] ."</p>";
-                            }
-                        }
-                        else{
-                            echo "0 Result";
-                        }
-                        ?>
-            </div>
-
-            <div class="card">
-                <?php
-                        if ($result4 -> num_rows > 0){
-                            while($row = $result4-> fetch_assoc()){
-                                echo "<h2>".$row["title"] ."</h2><br><h5>" .$row["serie"] ."</h5><br><h5>" .$row["tekstvak"] ."</h5><br><p>" .$row["datum"] ."</p>";
-                            }
-                        }
-                        else{
-                            echo "0 Result";
-                        }
-                        ?>
-            </div>
-
-            <div class="card">
-                <?php
-                        if ($result4 -> num_rows > 0){
-                            while($row = $result4-> fetch_assoc()){
-                                echo "<h2>".$row["title"] ."</h2><br><h5>" .$row["serie"] ."</h5><br><h5>" .$row["tekstvak"] ."</h5><br><p>" .$row["datum"] ."</p>";
+                                echo "</div>";
                             }
                         }
                         else{
