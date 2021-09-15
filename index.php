@@ -131,65 +131,63 @@ body {
     <div class="leftcolumn">
             <div class="films">
                 <div class="card">
+                    <?php
+                    $dbhost = "localhost";
+                    $dbroot = "id17176924_root";
+                    $dbww = "cKWw]H8Nu4+piGwW";
+                    $dbname = "id17176924_fullstackproject";
+                    
+                    $conn = mysqli_connect("$dbhost", "$dbroot", "$dbww", "$dbname");
+                        $sql1 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 1;";
+                        $result1 = $conn-> query($sql1);
+                        $sql2 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 2;";
+                        $result2 = $conn-> query($sql2);
+                        $sql3 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 3;";
+                        $result3 = $conn-> query($sql3);
+                        
+                        $conn -> close();
+                    ?>
                     <h2>Top 3 Nieuwe films</h2>
                     <div class="fakeimg">
                         <?php
-                        $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
-                        $sql = "SELECT filmname, datumschema FROM films WHERE id = 1;";
-                        $result = $conn-> query($sql);
-
-                        if ($result -> num_rows > 0){
-                            while($row = $result-> fetch_assoc()){
+                        if ($result1 -> num_rows > 0){
+                            while($row = $result1-> fetch_assoc()){
                                 echo "<h2>".$row["filmname"] ."</h2>
-                                <p>Suicide squad (remake) is een goede nieuwe film die uit gaat komen. De trailer laat ons het oude character harley quin zien die in eerdere s.q. films ook is gekomen</p>
+                                <p>".$row["filmtext"]."</p>
                                 <p>" .$row["datumschema"] ."</p>";
                             }
                         }
                         else{
                             echo "0 Result";
                         }
-
-                        $conn -> close();
                         ?>
                     </div>
                     <div class="fakeimg">
                         <?php
-                        $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
-                        $sql = "SELECT filmname, datumschema FROM films WHERE id = 2;";
-                        $result = $conn-> query($sql);
-
-                        if ($result -> num_rows > 0){
-                            while($row = $result-> fetch_assoc()){
+                        if ($result1 -> num_rows > 0){
+                            while($row = $result2-> fetch_assoc()){
                                 echo "<h2>".$row["filmname"] ."</h2>
-                                <p>Een hele nieuwe batman film waar we in hopen weer een nieuwe soort joker te kunnen zien die weer gaat vechten met batman. dit zou weer een beetje nostalgie oproepen uit de oudere batman fans</p>
+                                <p>".$row["filmtext"]."</p>
                                 <p>" .$row["datumschema"] ."</p>";
                             }
                         }
                         else{
                             echo "0 Result";
                         }
-
-                        $conn -> close();
                         ?>
                     </div>
                     <div class="fakeimg">
                         <?php
-                        $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
-                        $sql = "SELECT filmname, datumschema FROM films WHERE id = 3;";
-                        $result = $conn-> query($sql);
-
-                        if ($result -> num_rows > 0){
-                            while($row = $result-> fetch_assoc()){
+                        if ($result1 -> num_rows > 0){
+                            while($row = $result3-> fetch_assoc()){
                                 echo "<h2>".$row["filmname"] ."</h2>
-                                <p>De nieuwe uncharted movie waar we in de trailer zien dat de hoofdrollen gespeelt worden door Tom Holland (de huidige spiderman in de marvel films) en Mark Walhberg (het kind in ted2 die de pratende beer heeft</p>
+                                <p>".$row["filmtext"]."</p>
                                 <p>" .$row["datumschema"] ."</p>";
                             }
                         }
                         else{
                             echo "0 Result";
                         }
-
-                        $conn -> close();
                         ?>
                     </div>
                 </div>
@@ -197,61 +195,59 @@ body {
         </div>
         <div class="rightcolumn">
 
+            <?php
+                    $dbhost = "localhost";
+                    $dbroot = "id17176924_root";
+                    $dbww = "cKWw]H8Nu4+piGwW";
+                    $dbname = "id17176924_fullstackproject";
+                    
+                    $conn = mysqli_connect("$dbhost", "$dbroot", "$dbww", "$dbname");
+                        $sql4 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 1;";
+                        $result4 = $conn-> query($sql4);
+                        $sql5 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 2;";
+                        $result5 = $conn-> query($sql5);
+                        $sql6 = "SELECT filmname, filmtext, datumschema FROM films WHERE id = 3;";
+                        $result6 = $conn-> query($sql6);
+                        
+                        $conn -> close();
+                    ?>
             <div class="card">
                 <?php
-                $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
-                $sql = "SELECT title, serie, tekstvak, datum FROM articles WHERE id = 1;";
-                $result = $conn-> query($sql);
-
-                if ($result -> num_rows > 0){
-                    while($row = $result-> fetch_assoc()){
-                        echo "<h2>".$row["title"] ."</h2><br><h5>" .$row["serie"] ."</h5><br><h5>" .$row["tekstvak"] ."</h5><br><p>" .$row["datum"] ."</p>";
-                    }
-                }
-                else{
-                    echo "0 Result";
-                }
-
-                $conn -> close();
-                ?>
+                        if ($result4 -> num_rows > 0){
+                            while($row = $result4-> fetch_assoc()){
+                                echo "<h2>".$row["title"] ."</h2><br><h5>" .$row["serie"] ."</h5><br><h5>" .$row["tekstvak"] ."</h5><br><p>" .$row["datum"] ."</p>";
+                            }
+                        }
+                        else{
+                            echo "0 Result";
+                        }
+                        ?>
             </div>
 
             <div class="card">
                 <?php
-                $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
-                $sql = "SELECT title, serie, tekstvak, datum FROM articles WHERE id = 2;";
-                $result = $conn-> query($sql);
-
-                if ($result -> num_rows > 0){
-                    while($row = $result-> fetch_assoc()){
-                        echo "<h2>".$row["title"] ."</h2><br><h5>" .$row["serie"] ."</h5><br><h5>" .$row["tekstvak"] ."</h5><br><p>" .$row["datum"] ."</p>";
-                    }
-                }
-                else{
-                    echo "0 Result";
-                }
-
-                $conn -> close();
-                ?>
+                        if ($result4 -> num_rows > 0){
+                            while($row = $result4-> fetch_assoc()){
+                                echo "<h2>".$row["title"] ."</h2><br><h5>" .$row["serie"] ."</h5><br><h5>" .$row["tekstvak"] ."</h5><br><p>" .$row["datum"] ."</p>";
+                            }
+                        }
+                        else{
+                            echo "0 Result";
+                        }
+                        ?>
             </div>
 
             <div class="card">
                 <?php
-                $conn = mysqli_connect("localhost", "id17176924_root", "cKWw]H8Nu4+piGwW", "id17176924_fullstackproject");
-                $sql = "SELECT title, serie, tekstvak, datum FROM articles WHERE id = 3;";
-                $result = $conn-> query($sql);
-
-                if ($result -> num_rows > 0){
-                    while($row = $result-> fetch_assoc()){
-                        echo "<h2>".$row["title"] ."</h2><br><h5>" .$row["serie"] ."</h5><br><h5>" .$row["tekstvak"] ."</h5><br><p>" .$row["datum"] ."</p>";
-                    }
-                }
-                else{
-                    echo "0 Result";
-                }
-
-                $conn -> close();
-                ?>
+                        if ($result4 -> num_rows > 0){
+                            while($row = $result4-> fetch_assoc()){
+                                echo "<h2>".$row["title"] ."</h2><br><h5>" .$row["serie"] ."</h5><br><h5>" .$row["tekstvak"] ."</h5><br><p>" .$row["datum"] ."</p>";
+                            }
+                        }
+                        else{
+                            echo "0 Result";
+                        }
+                        ?>
         </div>
     </div>
     
