@@ -1,75 +1,46 @@
 <?php
-
-require_once "config.php";
-require_once "session.php";
-
-$error = '';
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])){
-
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
-
-    if (empty($email)){
-        $error .= '<p class="error">Email alsjeblieft invullen</p>';
-    }
-
-    if (empty($password)){
-        $error .= '<p class="error">Wachtwoord alsjeblieft invullen</p>';
-    }
-
-    if (empty($error)){
-        if ($query = $db->prepare("SELECT * FROM users WHERE email = ?")){
-            $query->bind_param('s', $email);
-            $query->execute();
-            $row = $query->fetch();
-            if ($row){
-                if (password_verify($password, $row['password'])){
-                    $_SESSION["userid"] = $row['id'];
-                    $_SESSION["user"] = $row;
-
-                    header("location: index.html");
-                    exit;
-                } else {
-                    $error .='<p class="error">Het wachtwoord is verkeerd</p>';
-                }
-                } else {
-                $error .= '<p class="error">Er is niemand die dit email addres gebruikt</p>';
-            }
+    require('db.php');
+    session_start();
+    // When form submitted, check and create user session.
+    if (isset($_POST['username'])) {
+        $username = stripslashes($_REQUEST['username']);    // removes backslashes
+        $username = mysqli_real_escape_string($con, $username);
+        $password = stripslashes($_REQUEST['password']);
+        $password = mysqli_real_escape_string($con, $password);
+        // Check user is exist in the database
+        $query    = "SELECT * FROM `users` WHERE username='$username'
+                     AND password='" . md5($password) . "'";
+        $result = mysqli_query($con, $query) or die(mysql_error());
+        $rows = mysqli_num_rows($result);
+        if ($rows == 1) {
+            $_SESSION['username'] = $username;
+            // Redirect to user dashboard page
+            header("Location: index.php");
+        } else {
+            echo "<div class='form'>
+                  <h3>Incorrect Username/password.</h3><br/>
+                  <p class='link'>Click here to <a href='login.php'>Login</a> again.</p>
+                  </div>";
         }
-        $query->close();
-    }
-    mysqli_close($db);
-}
+    } else {
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8"/>
     <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Login</h2>
-            <p>Vul alsjeblieft je email en wachtwoord in</p>
-            <form action="" method="post">
-                <div class="form-group">
-                    <label>email addres</label>
-                    <input type="email" name="email" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <input type="submit" name="submit" class="btn btn-primary" value="Submit">
-                </div>
-                <p>Heb je geen account? <a href="register.php">Meld je hier aan</a>.</p>
-            </form>
-        </div>
-    </div>
-</div>
+    <form class="form" method="post" name="login">
+        <h1 class="login-title">Login</h1>
+        <input type="text" class="login-input" name="username" placeholder="Username" autofocus="true"/>
+        <input type="password" class="login-input" name="password" placeholder="Password"/>
+        <input type="submit" value="Login" name="submit" class="login-button"/>
+        <p class="link"><a href="registration.php">New Registration</a></p>
+  </form>
+  <?php
+    }
+    ?>
 </body>
 </html>
