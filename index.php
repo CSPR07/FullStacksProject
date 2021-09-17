@@ -1,3 +1,7 @@
+<?php
+//include auth_session.php file on all user panel pages
+include("auth_session.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,6 +96,10 @@ body {
   text-align: center;
 }
 
+i {
+    padding-left:25px;
+}
+
 
 @media screen and (max-width: 1000px) {
   .leftcolumn, .rightcolumn {   
@@ -111,6 +119,7 @@ body {
 }
 
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="wrap">
@@ -122,9 +131,8 @@ body {
     <div class="topnav responsive" id="myTopnav">
         <a href="index.php" class="active">Homepage</a>
         <a href="overmij.php">Over mij</a>
-        <!--<a href="login.php" class="div123">Login</a>
+        <a href="login.php" class="div123">Login</a>
         <a href="logout.php" class="div123">Logout</a>
-        <a href="register.php" class="div123">Register</a>-->
     </div>
     <div class="row">
 
@@ -164,7 +172,12 @@ body {
             </div>
         </div>
         <div class="rightcolumn">
-
+            <script>
+            int count = 0;
+function myFunction(x) {
+  count++;
+}
+</script>
             <?php
                     $dbhost = "localhost";
                     $dbroot = "id17176924_root";
@@ -172,7 +185,7 @@ body {
                     $dbname = "id17176924_fullstackproject";
                     
                     $conn = mysqli_connect("$dbhost", "$dbroot", "$dbww", "$dbname");
-                        $sql = "SELECT title, serie, tekstvak, datum FROM articles ORDER BY datum DESC;";
+                        $sql = "SELECT title, serie, tekstvak, datum, films.datumschema FROM articles INNER JOIN films on articles.id = films.id ORDER BY datum DESC;";
                         $result = $conn-> query($sql);
                         
                         $conn -> close();
@@ -181,7 +194,9 @@ body {
                         if ($result -> num_rows > 0){
                             while($row = $result-> fetch_assoc()){
                                 echo "<div class='card'>";
-                                echo "<h2>".$row["title"] ."</h2><br><h5>" .$row["serie"] ."</h5><br><h5>" .$row["tekstvak"] ."</h5><br><p>" .$row["datum"] ."</p>";
+                                echo "<h2>".$row["title"] ."</h2><br><h4>" .$row["serie"] ."</h4><br><h4>" .$row["tekstvak"] ."</h4><br><p>" .$row["datumschema"] ."</p>";
+                                echo "<i onclick='myFunction(this)' class='fa fa-thumbs-up'></i>";
+                                echo "<i onclick='myFunction(this)' class='fa fa-thumbs-down'></i>";
                                 echo "</div>";
                             }
                         }
