@@ -293,7 +293,6 @@ function topFunction() {
                     $unliked = "INSERT INTO likes (user_id, film_id, liked) VALUES (".$userid.", ".$_POST['film_id'].", '1')";
                     $delete = "DELETE FROM `likes` WHERE `user_id` = ".$userid." AND `film_id` = ".$_POST['film_id']."";
                     $result1 = $conn-> query($sql1);
-                    //echo $result1 -> num_rows;
                     
                     if($result1 -> num_rows > 0){
                         $conn->query($delete);
@@ -316,7 +315,6 @@ function topFunction() {
                     $undisliked = "INSERT INTO likes (user_id, film_id, liked) VALUES (".$userid.", ".$_POST['film_id'].", '0')";
                     $delete = "DELETE FROM `likes` WHERE `user_id` = ".$userid." AND `film_id` = ".$_POST['film_id']."";
                     $result1 = $conn-> query($sql1);
-                    echo $result1 -> num_rows;
                     
                     if($result1 -> num_rows > 0){
                         $conn->query($delete);
