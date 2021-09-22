@@ -1,5 +1,4 @@
 <?php
-//include auth_session.php file on all user panel pages
 include("auth_session.php");
 ?>
 <!DOCTYPE html>
@@ -11,7 +10,7 @@ include("auth_session.php");
 }
 
 body {
-  font-family: Arial;
+  font-family: 'Roboto Condensed', sans-serif;
   padding: 0px;
   background-color: #bfbfbf;
   background-repeat: repeat;
@@ -39,8 +38,6 @@ body {
 .topnav {
   overflow: hidden;
   background-color: black;
-  padding: 0;
-  padding-left: 43%;
 }
 
 .topnav a {
@@ -69,6 +66,27 @@ body {
   
 }
 
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: purple;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+  margin:5px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+
 .fakeimg {
   width: 100%;
   padding: 20px;
@@ -86,6 +104,46 @@ body {
   clear: both;
 }
 
+.hierbenje {
+    border-top: 3px solid white;
+}
+
+#upvote{
+    position:inherit;
+    width:30px;
+    height:30px;
+    background-color:white;
+    display:inline-block;
+    right:50px;
+    transition:0s 1s;
+}
+
+#upvote:active{
+    width:30px;
+    height:30px;
+    background-color:#57de8d;
+    border:none;
+    transition:0s;
+}
+
+#downvote{
+    position:inherit;
+    width:30px;
+    height:30px;
+    background-color:white;
+    display:inline-block;
+    right:15px;
+    transition:0s 1s;
+}
+
+#downvote:active{
+    width:30px;
+    height:30px;
+    background-color:#d1364b;
+    border:none;
+    transition:0s;
+}
+
 .footer {
   padding: 20px;
   text-align: fixed;
@@ -100,14 +158,16 @@ i {
     padding-left:25px;
 }
 
+#welcome{
+    position: absolute;
+    right:0;
+}
+
 
 @media screen and (max-width: 1000px) {
   .leftcolumn, .rightcolumn {   
     width: 100%;
     padding: 0;
-  }
-  .topnav{
-      padding-left: 40%;
   }
 }
 
@@ -119,20 +179,51 @@ i {
 }
 
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="wrap">
     <div class="header">
-        <h1>Watchlist hulp</h1>
-        <p>Deze website is bedoelt om alle series die je gekeken hebt op een rijtje te krijgen</p>
+        <h1>Watchlist nieuws</h1>
+        <p>Deze website is bedoelt om al het nieuws van series en films te weergeven</p>
     </div>
 
+<button onclick="topFunction()" id="myBtn" title="Go to top"> ↑ </button>
+
+<script>
+var mybutton = document.getElementById("myBtn");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
     <div class="topnav responsive" id="myTopnav">
-        <a href="index.php" class="active">Homepage</a>
+        <a href="index.php" class="hierbenje">Homepage</a>
         <a href="overmij.php">Over mij</a>
-        <a href="login.php" class="div123">Login</a>
         <a href="logout.php" class="div123">Logout</a>
+        <li id="welcome"><?php  if(isset($_SESSION['username'])){
+        echo "<a href='logout.php'>";
+        echo "Welkom ";
+        echo $_SESSION['username'];
+        }else{ 
+        echo '<a href="login.php">';
+        echo 'Je bent niet ingelogd';
+        }?></a></li>
     </div>
     <div class="row">
 
@@ -172,31 +263,74 @@ i {
             </div>
         </div>
         <div class="rightcolumn">
-            <script>
-            int count = 0;
-function myFunction(x) {
-  count++;
-}
-</script>
             <?php
+                    
+                    
+                    $conn = mysqli_connect("$dbhost", "$dbroot", "$dbww", "$dbname");
+                        $sql = "SELECT title, articles.id, serie, tekstvak, datum, films.datumschema FROM articles INNER JOIN films on articles.id = films.id ORDER BY datum DESC";
+                        $result = $conn-> query($sql);
+                        $conn -> close();
+                
+                if(isset($_POST['button1'])){
+                    liked();
+                }
+                
+                if(isset($_POST['button2'])){
+                    disliked();
+                }
+                        
+                function liked(){
                     $dbhost = "localhost";
                     $dbroot = "id17176924_root";
                     $dbww = "cKWw]H8Nu4+piGwW";
                     $dbname = "id17176924_fullstackproject";
                     
                     $conn = mysqli_connect("$dbhost", "$dbroot", "$dbww", "$dbname");
-                        $sql = "SELECT title, serie, tekstvak, datum, films.datumschema FROM articles INNER JOIN films on articles.id = films.id ORDER BY datum DESC;";
-                        $result = $conn-> query($sql);
-                        
-                        $conn -> close();
-                    ?>
-                <?php
+                    
+                    $userid = $_SESSION["userid"];
+                    
+                    $sql1 = "SELECT user_id, film_id, liked FROM likes WHERE user_id = ".$userid." AND film_id = ".$_POST['film_id']."";
+                    $unliked = "INSERT INTO likes (user_id, film_id, liked) VALUES (".$userid.", ".$_POST['film_id'].", '1')";
+                    $delete = "DELETE FROM `likes` WHERE `user_id` = ".$userid." AND `film_id` = ".$_POST['film_id']."";
+                    $result1 = $conn-> query($sql1);
+                    //echo $result1 -> num_rows;
+                    
+                    if($result1 -> num_rows > 0){
+                        $conn->query($delete);
+                    }else{
+                        $conn-> query($unliked);
+                    }
+                }
+                
+                function disliked(){
+                    $dbhost = "localhost";
+                    $dbroot = "id17176924_root";
+                    $dbww = "cKWw]H8Nu4+piGwW";
+                    $dbname = "id17176924_fullstackproject";
+                    
+                    $conn = mysqli_connect("$dbhost", "$dbroot", "$dbww", "$dbname");
+                    
+                    $userid = $_SESSION["userid"];
+                    
+                    $sql1 = "SELECT user_id, film_id, liked FROM likes WHERE user_id = ".$userid." AND film_id = ".$_POST['film_id']."";
+                    $undisliked = "INSERT INTO likes (user_id, film_id, liked) VALUES (".$userid.", ".$_POST['film_id'].", '0')";
+                    $delete = "DELETE FROM `likes` WHERE `user_id` = ".$userid." AND `film_id` = ".$_POST['film_id']."";
+                    $result1 = $conn-> query($sql1);
+                    echo $result1 -> num_rows;
+                    
+                    if($result1 -> num_rows > 0){
+                        $conn->query($delete);
+                    }else{
+                        $conn-> query($undisliked);
+                    }
+                }
+                
                         if ($result -> num_rows > 0){
                             while($row = $result-> fetch_assoc()){
                                 echo "<div class='card'>";
                                 echo "<h2>".$row["title"] ."</h2><br><h4>" .$row["serie"] ."</h4><br><h4>" .$row["tekstvak"] ."</h4><br><p>" .$row["datumschema"] ."</p>";
-                                echo "<i onclick='myFunction(this)' class='fa fa-thumbs-up'></i>";
-                                echo "<i onclick='myFunction(this)' class='fa fa-thumbs-down'></i>";
+                                echo '<form method="post"><input type="hidden" name="film_id" value="'.$row["id"].'"/><input id="upvote" type="submit" name="button1" value= "▲"/></form>';
+                                echo '<form method="post"><input type="hidden" name="film_id" value="'.$row["id"].'"/><input id="downvote" type="submit" name="button2" value= "▼"/></form>';
                                 echo "</div>";
                             }
                         }
