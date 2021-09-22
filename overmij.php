@@ -1,3 +1,6 @@
+<?php
+include("auth_session.php");
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,7 +10,7 @@
 }
 
 body {
-  font-family: Arial;
+  font-family: 'Roboto Condensed', sans-serif;
   padding: 0px;
   background-color: #bfbfbf;
   background-repeat: repeat;
@@ -36,7 +39,6 @@ body {
   overflow: hidden;
   background-color: black;
   padding: 0;
-  padding-left: 43%;
 }
 
 .topnav a {
@@ -69,6 +71,9 @@ body {
   padding: 20px;
   margin-top: 20px;
 }
+.hierbenje {
+    border-top: 3px solid white;
+}
 
 .row:after {
   content: "";
@@ -86,6 +91,15 @@ body {
   text-align: center;
 }
 
+#welcome{
+    position: absolute;
+    right:0;
+}
+
+.div123{
+    float:none;
+    top:50%;
+}
 
 @media screen and (max-width: 1000px) {
   .leftcolumn, .rightcolumn {   
@@ -104,6 +118,9 @@ body {
   }
 }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
 <body>
 <div class="wrap">
     <div class="header">
@@ -112,9 +129,15 @@ body {
     </div>
 
     <div class="topnav responsive" id="myTopnav">
-        <a href="index.php" class="active">Homepage</a>
-        <a href="overmij.php">Over mij</a>
-        </a>
+        <a href="index.php">Homepage</a>
+        <a href="overmij.php" class="hierbenje">Over mij</a>
+        <a href="logout.php" class="div123">Logout</a>
+        <li id="welcome"><a href="login.php"><?php  if(isset($_SESSION['username'])){
+        echo "Welkom ";
+        echo $_SESSION['username'];
+        }else{ 
+        echo 'Je bent niet ingelogd';
+        }?></a></li>
     </div>
     <div class="row">
         <div class="rightcolumn">
